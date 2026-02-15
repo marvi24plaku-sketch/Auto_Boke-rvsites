@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Boke - Makina në Shitje | Berat, Albania</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="car-animation">
+                <i class="fas fa-car-side"></i>
+            </div>
+            <div class="loader-text">AUTO BOKE</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="window.scrollTo(0,0)">
+                <div class="logo-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-main">AUTO</span>
+                    <span class="logo-sub">BOKE</span>
+                </div>
+            </div>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#makina" class="nav-link" data-text="Makinat">
+                    <span>Makinat</span>
+                    <i class="fas fa-chevron-right mobile-arrow"></i>
+                </a>
+                <a href="#statistika" class="nav-link" data-text="Statistika">
+                    <span>Statistika</span>
+                    <i class="fas fa-chevron-right mobile-arrow"></i>
+                </a>
+                <a href="#rreth-nesh" class="nav-link" data-text="Rreth Nesh">
+                    <span>Rreth Nesh</span>
+                    <i class="fas fa-chevron-right mobile-arrow"></i>
+                </a>
+                <a href="#kontakt" class="nav-link" data-text="Kontakt">
+                    <span>Kontakt</span>
+                    <i class="fas fa-chevron-right mobile-arrow"></i>
+                </a>
+                <a href="https://instagram.com/Auto_Boke" target="_blank" class="nav-link instagram-nav">
+                    <i class="fab fa-instagram"></i>
+                    <span>@Auto_Boke</span>
+                </a>
+                <a href="admin.html" class="nav-link admin-nav">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Admin</span>
+                </a>
+            </div>
+
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="gradient-overlay"></div>
+            <div class="particles" id="particles"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-map-marker-alt"></i>
+                Berat, Albania
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="title-line" data-aos="fade-up">Makinë të Re</span>
+                <span class="title-line highlight" data-aos="fade-up" data-aos-delay="100">Emocion të Ri</span>
+            </h1>
+            
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Gjej makinën e ëndrrave të tua me cilësi të garantuar dhe çmime konkurruese. 
+                Eksperiencë blerjeje e nivelit të lartë në qytetin e Beratit.
+            </p>
+            
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="300">
+                <a href="#makina" class="btn btn-primary">
+                    <span>Shiko Makinat</span>
+                    <i class="fas fa-arrow-right"></i>
+                    <div class="btn-glow"></div>
+                </a>
+                <a href="https://wa.me/355689529788" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>Na Kontakto</span>
+                </a>
+            </div>
+
+            <div class="hero-stats-row" data-aos="fade-up" data-aos-delay="400">
+                <div class="stat-item">
+                    <div class="stat-number" id="stat-cars">0</div>
+                    <div class="stat-label">Makina Aktive</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Klientë të Kënaqur</div>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Transparencë</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" onclick="document.getElementById('makina').scrollIntoView({behavior: 'smooth'})">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="scroll-text">Skrollo</div>
+        </div>
+    </header>
+
+    <!-- Search & Filter Section -->
+    <section class="search-section" id="makina">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">INVENTARI</span>
+                <h2 class="section-title">Makinat në Shitje</h2>
+                <p class="section-subtitle">Zgjidh nga koleksioni ynë i kuruar i automjeteve premium</p>
+            </div>
+
+            <div class="search-bar" data-aos="fade-up" data-aos-delay="100">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Kërko makinë (marka, model, vit...)" onkeyup="searchCars()">
+                </div>
+                <button class="filter-toggle" onclick="toggleFilters()">
+                    <i class="fas fa-filter"></i>
+                    <span>Filtra</span>
+                </button>
+            </div>
+
+            <div class="filters-panel" id="filtersPanel">
+                <div class="filter-group">
+                    <label>Marka</label>
+                    <select id="filterBrand" onchange="applyFilters()">
+                        <option value="">Të Gjitha</option>
+                        <option value="Audi">Audi</option>
+                        <option value="BMW">BMW</option>
+                        <option value="Mercedes">Mercedes-Benz</option>
+                        <option value="Volkswagen">Volkswagen</option>
+                        <option value="Toyota">Toyota</option>
+                        <option value="Ford">Ford</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Karburanti</label>
+                    <select id="filterFuel" onchange="applyFilters()">
+                        <option value="">Të Gjitha</option>
+                        <option value="Naftë">Naftë</option>
+                        <option value="Benzinë">Benzinë</option>
+                        <option value="Elektrik">Elektrik</option>
+                        <option value="Hybrid">Hybrid</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Çmimi Max (€)</label>
+                    <input type="range" id="priceRange" min="0" max="100000" value="100000" oninput="updatePriceLabel(); applyFilters()">
+                    <span id="priceLabel">€100,000</span>
+                </div>
+                <button class="clear-filters" onclick="clearFilters()">
+                    <i class="fas fa-times"></i> Pastro Filtrat
+                </button>
+            </div>
+
+            <div class="cars-grid" id="carsGrid">
+                <!-- Makinat ngarkohen këtu -->
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-car-crash"></i>
+                <h3>Nuk u gjetën rezultate</h3>
+                <p>Provoni kritere të tjera kërkimi</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="rreth-nesh">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">PSE NE?</span>
+                <h2 class="section-title">Eksperienca Auto Boke</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="feature-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Cilësi e Garantuar</h3>
+                    <p>Çdo makinë kalon kontroll teknik të detajuar para shitjes. Garanci 6 mujore për motorin.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3>Çmime Konkurruese</h3>
+                    <p>Analizojmë tregun çdo ditë për t'ju ofruar çmimet më të mira në Berat.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Transparencë 100%</h3>
+                    <p>Dokumentacion i plotë, histori servisi, dhe asistencë në noterizim.</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support 24/7</h3>
+                    <p>Jemi këtu për ju çdo ditë përmes WhatsApp dhe Instagram.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="statistika">
+        <div class="stats-bg">
+            <div class="stats-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box" data-aos="zoom-in">
+                    <div class="stat-icon"><i class="fas fa-car"></i></div>
+                    <div class="stat-number count-up" data-target="150">0</div>
+                    <div class="stat-text">Makina të Shitura</div>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-icon"><i class="fas fa-smile"></i></div>
+                    <div class="stat-number count-up" data-target="98">0</div>
+                    <div class="stat-text">% Kënaqësi Klienti</div>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                    <div class="stat-number count-up" data-target="5">0</div>
+                    <div class="stat-text">Vite Eksperiencë</div>
+                </div>
+                <div class="stat-box" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-icon"><i class="fas fa-award"></i></div>
+                    <div class="stat-number count-up" data-target="24">0</div>
+                    <div class="stat-text">Çmime të Fitura</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="kontakt">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info" data-aos="fade-right">
+                    <span class="section-tag">KONTAKT</span>
+                    <h2>Fillo Udhëtimin Tënd</h2>
+                    <p>Jemi këtu për t'ju ndihmuar të gjeni makinën perfekte. Na kontaktoni tani!</p>
+                    
+                    <div class="contact-methods">
+                        <a href="https://wa.me/355689529788" target="_blank" class="contact-method">
+                            <div class="method-icon whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="method-info">
+                                <span class="method-label">WhatsApp</span>
+                                <span class="method-value">069 529 788</span>
+                            </div>
+                        </a>
+                        
+                        <a href="https://instagram.com/Auto_Boke" target="_blank" class="contact-method">
+                            <div class="method-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <div class="method-info">
+                                <span class="method-label">Instagram</span>
+                                <span class="method-value">@Auto_Boke</span>
+                            </div>
+                        </a>
+                        
+                        <div class="contact-method">
+                            <div class="method-icon location">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-info">
+                                <span class="method-label">Vendndodhja</span>
+                                <span class="method-value">Berat, Albania</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper" data-aos="fade-left">
+                    <form class="contact-form" onsubmit="submitContactForm(event)">
+                        <h3>Dërgo Mesazh</h3>
+                        <div class="form-group">
+                            <input type="text" id="contactName" required placeholder=" ">
+                            <label>Emri juaj</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="contactPhone" required placeholder=" ">
+                            <label>Numri i telefonit</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contactMessage" rows="4" placeholder=" "></textarea>
+                            <label>Mesazhi juaj</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span>Dërgo Mesazhin</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <i class="fas fa-car"></i>
+                            <span>AUTO BOKE</span>
+                        </div>
+                        <p>Makinë të re, emocion të ri. Eksperienca më e mirë e blerjes së makinave në Berat.</p>
+                        <div class="social-links">
+                            <a href="https://instagram.com/Auto_Boke" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/355689529788" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Navigim</h4>
+                        <a href="#makina">Makinat</a>
+                        <a href="#rreth-nesh">Rreth Nesh</a>
+                        <a href="#kontakt">Kontakt</a>
+                        <a href="admin.html">Admin Panel</a>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Shërbime</h4>
+                        <a href="#">Blerje Makinash</a>
+                        <a href="#">Shitje Makinash</a>
+                        <a href="#">Këmbim</a>
+                        <a href="#">Konsulencë</a>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4>Kontakt</h4>
+                        <p><i class="fas fa-phone"></i> 069 529 788</p>
+                        <p><i class="fas fa-envelope"></i> info@autoboke.al</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Berat, Albania</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 Auto Boke. Të gjitha të drejtat e rezervuara.</p>
+                <p class="made-with">Made with <i class="fas fa-heart"></i> in Berat</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Car Details Modal -->
+    <div id="carModal" class="modal">
+        <div class="modal-content car-modal-content">
+            <button class="modal-close" onclick="closeCarModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Përmbajtja ngarkohet me JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Operacioni u krye me sukses!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

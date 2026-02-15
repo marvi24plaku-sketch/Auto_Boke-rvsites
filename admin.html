@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Auto Boke</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-box">
+                <div class="login-logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ADMIN PANEL</span>
+                </div>
+                
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="loginEmail" value="marvi24plaku@gmail.com" required placeholder="Email">
+                    </div>
+                    
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" required placeholder="Fjalëkalimi">
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        <span>Hyr në Panel</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+                
+                <div class="login-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Email: marvi24plaku@gmail.com | Pass: admin123</span>
+                </div>
+                
+                <a href="index.html" class="back-to-site">
+                    <i class="fas fa-arrow-left"></i> Kthehu në faqen kryesore
+                </a>
+            </div>
+        </div>
+        <div class="login-bg"></div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="admin-dashboard" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-car"></i>
+                    <span>AUTO BOKE</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" onclick="showSection('dashboard', this)">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('cars', this)">
+                    <i class="fas fa-car"></i>
+                    <span>Makinat</span>
+                    <span class="nav-badge" id="carCount">0</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('messages', this)">
+                    <i class="fas fa-envelope"></i>
+                    <span>Mesazhe</span>
+                    <span class="nav-badge" id="msgCount">0</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('analytics', this)">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Analitika</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('settings', this)">
+                    <i class="fas fa-cog"></i>
+                    <span>Cilësimet</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="admin-info">
+                    <div class="admin-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="admin-details">
+                        <span class="admin-name">Administrator</span>
+                        <span class="admin-email">marvi24plaku@gmail.com</span>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Dil</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Top Bar -->
+            <header class="admin-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Kërko...">
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" onclick="refreshData()" title="Rifresko">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <a href="index.html" target="_blank" class="header-btn" title="Shiko Faqen">
+                        <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    <div class="header-time" id="headerTime"></div>
+                </div>
+            </header>
+
+            <!-- Dashboard Section -->
+            <section id="dashboardSection" class="admin-section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <p>Përmbledhje e aktivitetit të fundit</p>
+                </div>
+                
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-card-icon blue">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <h3 id="dashboardCarCount">0</h3>
+                            <p>Makina Aktive</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon green">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <h3 id="totalViews">1,247</h3>
+                            <p>Shikime Sot</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon orange">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <h3 id="dashboardMsgCount">0</h3>
+                            <p>Mesazhe të Reja</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon purple">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="stat-card-info">
+                            <h3 id="avgPrice">€0</h3>
+                            <p>Çmimi Mesatar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Makinat e Fundit</h3>
+                            <a href="#" onclick="showSection('cars', document.querySelectorAll('.nav-item')[1])">Shiko të Gjitha</a>
+                        </div>
+                        <div class="recent-cars" id="recentCars">
+                            <!-- Ngarkohet me JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Mesazhet e Fundit</h3>
+                            <a href="#" onclick="showSection('messages', document.querySelectorAll('.nav-item')[2])">Shiko të Gjitha</a>
+                        </div>
+                        <div class="recent-messages" id="recentMessages">
+                            <!-- Ngarkohet me JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cars Section -->
+            <section id="carsSection" class="admin-section">
+                <div class="section-header">
+                    <div>
+                        <h1>Menaxho Makinat</h1>
+                        <p>Shto, edito ose fshi makina nga inventari</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="openCarModal()">
+                        <i class="fas fa-plus"></i>
+                        <span>Shto Makinë të Re</span>
+                    </button>
+                </div>
+
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Marka/Modeli</th>
+                                <th>Viti</th>
+                                <th>Karburanti</th>
+                                <th>Km</th>
+                                <th>Çmimi</th>
+                                <th>Data</th>
+                                <th>Veprime</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carsTableBody">
+                            <!-- Ngarkohet me JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Messages Section -->
+            <section id="messagesSection" class="admin-section">
+                <div class="section-header">
+                    <div>
+                        <h1>Mesazhet e Klientëve</h1>
+                        <p>Interesimet për makinat</p>
+                    </div>
+                    <button class="btn btn-danger" onclick="clearAllMessages()">
+                        <i class="fas fa-trash"></i>
+                        <span>Fshi Të Gjitha</span>
+                    </button>
+                </div>
+
+                <div class="messages-grid" id="messagesGrid">
+                    <!-- Ngarkohet me JS -->
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analyticsSection" class="admin-section">
+                <div class="section-header">
+                    <h1>Analitika</h1>
+                    <p>Statistika të detajuara</p>
+                </div>
+                <div class="coming-soon">
+                    <i class="fas fa-chart-pie"></i>
+                    <h2>Duke u Përgatitur</h2>
+                    <p>Funksionaliteti i analitikës do jetë i disponueshëm së shpejti.</p>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section id="settingsSection" class="admin-section">
+                <div class="section-header">
+                    <h1>Cilësimet</h1>
+                    <p>Menaxho preferencat e llogarisë</p>
+                </div>
+                
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>Ndrysho Fjalëkalimin</h3>
+                        <form onsubmit="changePassword(event)">
+                            <div class="form-group">
+                                <label>Fjalëkalimi i Vjetër</label>
+                                <input type="password" id="oldPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Fjalëkalimi i Ri</label>
+                                <input type="password" id="newPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Konfirmo Fjalëkalimin</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ruaj Ndryshimet</button>
+                        </form>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3>Informacione</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <span>Versioni</span>
+                                <span>1.0.0</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Last Updated</span>
+                                <span id="lastUpdated">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Total Data</span>
+                                <span id="totalDataSize">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Car Modal -->
+    <div id="carModal" class="admin-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Shto Makinë të Re</h2>
+                <button class="modal-close" onclick="closeCarModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="carForm" onsubmit="saveCar(event)">
+                <input type="hidden" id="carId">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Marka *</label>
+                        <select id="carBrand" required>
+                            <option value="">Zgjidh Markën</option>
+                            <option value="Audi">Audi</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Mercedes">Mercedes-Benz</option>
+                            <option value="Volkswagen">Volkswagen</option>
+                            <option value="Toyota">Toyota</option>
+                            <option value="Ford">Ford</option>
+                            <option value="Renault">Renault</option>
+                            <option value="Peugeot">Peugeot</option>
+                            <option value="Fiat">Fiat</option>
+                            <option value="Honda">Honda</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="Other">Tjetër</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Modeli *</label>
+                        <input type="text" id="carModel" placeholder="p.sh. A4, Golf, Corolla" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Viti i Prodhimit *</label>
+                        <input type="number" id="carYear" min="1990" max="2025" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Karburanti *</label>
+                        <select id="carFuel" required>
+                            <option value="">Zgjidh</option>
+                            <option value="Naftë">Naftë</option>
+                            <option value="Benzinë">Benzinë</option>
+                            <option value="Elektrik">Elektrik</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="GPL">GPL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Çmimi (€) *</label>
+                        <input type="number" id="carPrice" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kilometrazhi (km)</label>
+                        <input type="number" id="carKm" min="0" placeholder="0">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Përshkrimi</label>
+                        <textarea id="carDescription" rows="3" placeholder="Përshkrim i shkurtër i makinës..."></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>URL e Fotos *</label>
+                        <input type="url" id="carImage" placeholder="https://example.com/foto.jpg" required>
+                        <small>Lini bosh për foto default</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeCarModal()">Anulo</button>
+                    <button type="submit" class="btn btn-primary">Ruaj Makinën</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="adminToast" class="toast"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
